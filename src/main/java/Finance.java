@@ -16,7 +16,7 @@ public class Finance {
             MORTGAGE_CALCULATOR, "usage: mortgageCalculator <loanAmount> <termInYears> <annualRate>");
 
     private static boolean validateCommandArguments(String[] args){
-        switch(args[1]){
+        switch(args[0]){
             case BEST_LOAN_RATES:  return args.length == 1;
 
             case SAVINGS_CALCULATOR: return args.length == 3;
@@ -50,16 +50,19 @@ public class Finance {
     public static void main( String[] args )
     {
         String command = args[0];
-        boolean isValidCommand = validateCommandArguments(args);
+
         if(!commandsToUsage.containsKey(command)){
             System.out.println(command + ": command not found");
             return;
+        }else{
+            boolean isValidCommand = validateCommandArguments(args);
+            if(!isValidCommand){
+                commandsToUsage.get(args[0]);
+                return;
+            }
         }
 
-        if(!isValidCommand){
-            commandsToUsage.get(args[0]);
-            return;
-        }
+
 
         executeCommand(command, Arrays.copyOfRange(args, 1, args.length));
 
