@@ -54,13 +54,14 @@ public class Finance {
         if(!commandsToUsage.containsKey(command)){
             System.out.println(command + ": command not found");
             return;
-        }else{
-            boolean isValidCommand = validateCommandArguments(args);
-            if(!isValidCommand){
-                commandsToUsage.get(args[0]);
-                return;
-            }
         }
+
+        boolean isValidCommand = validateCommandArguments(args);
+        if(!isValidCommand){
+            System.out.println(commandsToUsage.get(args[0]));
+            return;
+        }
+
 
 
 
